@@ -2,7 +2,7 @@ import axios, { AxiosInstance } from 'axios';
 import crypto from 'crypto';
 import { z } from 'zod';
 import set from 'lodash/set';
-import { User, Parameter, Measurement } from './parameter.model';
+import { Parameter, Measurement } from './parameter.model';
 import { ParameterRepository } from './parameter.repository';
 import { handleAxiosError } from '@/utils/axios';
 
@@ -13,15 +13,6 @@ const ParameterResponseSchema = z.object({
   description: z.string(),
   dataType: z.enum(['float']),
   unit: z.string(),
-  createdAt: z.string(),
-  updatedAt: z.string(),
-});
-
-const UserResponseSchema = z.object({
-  id: z.string(),
-  externalId: z.string(),
-  firstName: z.string(),
-  lastName: z.string(),
   createdAt: z.string(),
   updatedAt: z.string(),
 });
@@ -84,20 +75,6 @@ class ParameterRepositoryCorrelate implements ParameterRepository {
 
       return config;
     });
-  }
-
-  async getUserByExternalId(externalId: string): Promise<User> {
-    const url = `/api/users/external/${externalId}`;
-
-    try {
-      const response = await this.client.get(url);
-
-      const result = UserResponseSchema.parse(response.data);
-
-      return result;
-    } catch (error) {
-      return handleAxiosError(error, `${this.baseUrl}${url}`);
-    }
   }
 
   async listParametersByUser(userId: string): Promise<Parameter[]> {

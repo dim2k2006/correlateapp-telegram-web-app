@@ -1,12 +1,3 @@
-export type User = {
-  id: string;
-  externalId: string;
-  firstName: string;
-  lastName: string;
-  createdAt: string;
-  updatedAt: string;
-};
-
 export type Parameter = {
   id: string;
   userId: string;

@@ -12,10 +12,6 @@ class ParameterServiceImpl implements ParameterService {
     this.parameterRepository = parameterRepository;
   }
 
-  async getUserByExternalId(externalId: string) {
-    return this.parameterRepository.getUserByExternalId(externalId);
-  }
-
   async listParametersByUser(userId: string) {
     return this.parameterRepository.listParametersByUser(userId);
   }
