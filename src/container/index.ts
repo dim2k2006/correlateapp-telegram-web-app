@@ -9,6 +9,8 @@ function getEnvVariable(name: string): string {
 }
 
 export function buildConfig(): Config {
+  console.log('process.env:', process.env);
+
   const apiBaseUrl = getEnvVariable('NEXT_PUBLIC_API_BASE_URL');
   const userId = getEnvVariable('NEXT_PUBLIC_USER_ID');
   const correlateApiKey = getEnvVariable('NEXT_PUBLIC_CORRELATE_API_KEY');

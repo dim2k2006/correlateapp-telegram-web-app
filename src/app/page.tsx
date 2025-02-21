@@ -1,17 +1,12 @@
 import Image from 'next/image';
 import styles from './page.module.css';
-import { useGetParametersByUser } from '@/components/parameter-service-provider';
-import { useConfig } from '@/components/config-provider';
+import Parameters from '@/components/parameters';
 
 export default function Home() {
-  const { userId } = useConfig();
-
-  const parametersFetchingState = useGetParametersByUser(userId);
-
-  console.log('parametersFetchingState', parametersFetchingState.data);
-
   return (
     <div className={styles.page}>
+      <Parameters />
+
       <main className={styles.main}>
         <Image className={styles.logo} src="/next.svg" alt="Next.js logo" width={180} height={38} priority />
         <ol>
