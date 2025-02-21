@@ -4,6 +4,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import './globals.css';
 import { buildConfig, buildContainer } from '@/container';
 import { ParameterServiceProvider } from '@/components/parameter-service-provider';
+import ConfigProvider from '@/components/config-provider';
 
 const queryClient = new QueryClient();
 
@@ -34,7 +35,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <QueryClientProvider client={queryClient}>
-          <ParameterServiceProvider service={container.parameterService}>{children}</ParameterServiceProvider>
+          <ConfigProvider config={config}>
+            <ParameterServiceProvider service={container.parameterService}>{children}</ParameterServiceProvider>
+          </ConfigProvider>
         </QueryClientProvider>
       </body>
     </html>
